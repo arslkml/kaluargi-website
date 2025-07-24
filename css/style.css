@@ -336,6 +336,7 @@ a {
     animation: slideIn 0.35s ease-out forwards; /* Animasi */
 }
 
+
 @keyframes slideIn {
     to {
         transform: translateX(0); /* Posisi akhir di tengah */
