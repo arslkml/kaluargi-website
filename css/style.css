@@ -1,0 +1,785 @@
+/* 1. CSS Variables (Variabel Global) */
+:root {
+    --color-primary: #36467D;
+    --color-secondary: #F5F5F5;
+    --color-third: #103692;
+    --color-fourth: #BFAF92;
+    --color-dark: #111111;
+    --color-accent: #FBBF24; /* Warna kuning dari screenshot */
+
+    --font-quicksand: 'Quicksand', sans-serif;
+    --font-poppins: 'Poppins', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+}
+
+/* 2. Reset dan Gaya Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-inter);
+    color: var(--color-dark);
+    background-color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 3. Utility Class (Kelas Bantuan) */
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* Atur jarak kiri dan kanan di sini */
+    padding-left: 1rem; /* setara 16px */
+    padding-right: 1rem; /* setara 16px */
+}
+
+/* 4. Navbar Styling */
+.navbar {
+    background-color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: #b4b4b4 1px solid;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo img {
+    height: 60px;
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    font-family: var(--font-quicksand);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--color-third);
+}
+
+.navbar-actions {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* 5. Footer Styling */
+.footer {
+    background-color: #262626; /* Warna abu-abu gelap dari screenshot */
+    color: #a3a3a3; /* Warna teks abu-abu terang */
+    padding: 3rem 0;
+}
+
+.footer-title {
+    font-family: var(--font-quicksand);
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.footer-contact-info {
+    font-family: var(--font-inter);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid #404040;
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+/* 6. Page-specific Sections */
+.hero {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+}
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    /* DEFAULT (MOBILE): Teks berada di tengah */
+    text-align: center; 
+    padding: 0 1rem; /* Beri sedikit padding di mobile agar tidak mentok */
+}
+
+/* DESKTOP (Layar 768px ke atas) */
+@media (min-width: 768px) {
+    .hero {
+        /* Pindahkan seluruh blok konten ke kiri */
+        justify-content: flex-start;
+    }
+    
+    .hero-content {
+        /* Ubah perataan teks menjadi kiri */
+        text-align: left;
+        padding: 0; /* Hapus padding mobile karena sudah di-handle .container */
+        
+        /* Batasi lebar teks agar tidak terlalu panjang di layar besar */
+        max-width: 50%;
+    }
+}
+.hero-title {
+    font-family: var(--font-quicksand);
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-family: var(--font-quicksand);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1.5rem;
+}
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: var(--color-third);
+}
+
+.section {
+    padding: 4rem 0;
+}
+.text-center {
+    text-align: center;
+}
+.section-title {
+    font-family: var(--font-quicksand);
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+.section-paragraph {
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* 7. Card & Grid Styling */
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.card {
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+/* KODE BARU UNTUK GAMBAR DI DALAM CARD */
+.card-image {
+    width: 100%; /* Membuat lebar gambar mengisi penuh card */
+    height: 200px; /* Samakan tingginya dengan placeholder sebelumnya */
+    
+    /* Properti kunci untuk mencegah gambar keluar dari kotak dan distorsi */
+    object-fit: cover; 
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+.card-title {
+    font-family: var(--font-poppins);
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+.card-excerpt {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+.media-image-placeholder {
+    max-width: 800px;
+    margin: 0 auto;
+    height: 500px;
+    background-color: #e0e0e0;
+}
+
+/* 8. Menu Page Image Styling */
+.menu-image-container {
+    /* Memberi jarak 2rem dari atas dan bawah, dan auto untuk kiri-kanan agar ke tengah */
+    margin: 2rem auto; 
+    
+    /* Batas lebar maksimum agar tidak terlalu besar di layar lebar */
+    max-width: 600px; 
+}
+
+.menu-image {
+    /* Membuat gambar responsif, lebarnya akan mengikuti containernya */
+    width: 100%; 
+    
+    /* Menjaga rasio aspek gambar */
+    height: auto; 
+    
+    /* Menghilangkan spasi ekstra di bawah gambar */
+    display: block; 
+}
+
+/* 9. Divider Styling */
+.divider-container {
+    /* Menggunakan flexbox untuk menengahkan gambar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Memberi jarak atas dan bawah */
+    margin: 3rem 0;
+}
+
+.divider-container img {
+    /* Atur tinggi divider sesuai kebutuhan */
+    height: 30px; 
+    
+    /* Lebar akan menyesuaikan secara otomatis */
+    width: auto;
+}
+
+/* 10. Menu Title Divider */
+.menu-title-divider {
+    width: 50px; /* Sesuaikan panjang garis */
+    height: 2px; /* Tinggi garis */
+    background-color: var(--color-primary);
+    margin: 0.5rem auto 1.5rem auto; /* Jarak atas, auto kiri-kanan untuk tengah, jarak bawah */
+    border-radius: 2px; /* Membuat ujung garis sedikit membulat */
+    transform: translateX(-100%); /* Posisi awal di luar layar kiri */
+    animation: slideIn 0.35s ease-out forwards; /* Animasi */
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0); /* Posisi akhir di tengah */
+    }
+}
+
+/* 11. Gallery Grid Styling */
+.gallery-grid {
+    display: grid;
+    /* Membuat kolom responsif: minimal 250px, dan akan mengisi ruang yang ada */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem; /* Jarak antar gambar */
+    margin-top: 2rem; /* Jarak dari teks di atasnya */
+}
+
+.gallery-item {
+    display: block;
+    /* Properti kunci untuk membuat kotak 1:1 */
+    aspect-ratio: 1 / 1; 
+    border-radius: 8px; /* Sudut sedikit membulat */
+    overflow: hidden; /* Memastikan gambar tidak keluar dari sudut membulat */
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05); /* Efek zoom saat di-hover */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    /* Memastikan gambar mengisi kotak tanpa distorsi */
+    object-fit: cover; 
+}
+
+/* 12. About Us Section Layout */
+.about-us-layout {
+    display: flex; /* Mengaktifkan Flexbox */
+    align-items: center; /* Membuat gambar dan teks sejajar di tengah secara vertikal */
+    gap: 3rem; /* Memberi jarak antara gambar dan teks */
+}
+
+.about-us-image,
+.about-us-content {
+    flex: 1; /* Membuat kedua kolom memiliki lebar yang sama */
+}
+
+.about-us-image img {
+    width: 100%;
+    aspect-ratio: 3 / 4; /* Membuat rasio gambar 3:4 (portrait) */
+    object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
+    border-radius: 8px; /* Sudut sedikit membulat */
+}
+
+/* Menyesuaikan agar judul dan paragraf tidak lagi di tengah */
+.about-us-content .section-title,
+.about-us-content .section-paragraph {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Responsif untuk layar kecil (Mobile) */
+@media (max-width: 768px) {
+    .about-us-layout {
+        flex-direction: column; /* Mengubah layout menjadi tumpukan vertikal */
+        gap: 2rem;
+    }
+    
+    .about-us-content .section-title,
+    .about-us-content .section-paragraph {
+        text-align: center; /* Mengembalikan teks ke tengah saat ditumpuk */
+    }
+}
+
+/* 13. Tombol Sekunder */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* 14. Expandable Card Section */
+/* KODE BARU */
+.expandable-card-container {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    gap: 10px; /* Tambahkan ini untuk memberi jarak antar kartu */
+    overflow-x: hidden;
+}
+
+.expandable-card {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 60vh; /* Tinggi card */
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    flex: 0.5; /* Lebar awal saat tidak aktif */
+    position: relative;
+    transition: flex 0.7s ease-in-out;
+    -webkit-transition: flex 0.7s ease-in-out;
+}
+
+.expandable-card h3 {
+    font-family: var(--font-quicksand);
+    font-size: 24px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    opacity: 0; /* Sembunyikan teks secara default */
+    transition: opacity 0.3s ease-in 0.4s;
+}
+
+.expandable-card.active {
+    flex: 5; /* Lebar saat aktif (di-hover) */
+}
+
+.expandable-card.active h3 {
+    opacity: 1; /* Tampilkan teks saat aktif */
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .expandable-card-container {
+        width: 100vw;
+    }
+    .expandable-card:nth-of-type(4),
+    .expandable-card:nth-of-type(5) {
+        display: none; /* Sembunyikan card ke-4 dan ke-5 di mobile */
+    }
+}
+
+/* 15. Card Menu dengan Efek Hover */
+
+/* Hapus atau ganti style .card-image-placeholder jika masih ada */
+/* Kita gunakan .card-image-container sebagai gantinya */
+
+.card-image-container {
+    position: relative; /* Wajib, agar bisa menampung overlay */
+    aspect-ratio: 3 / 4; /* Rasio gambar 3:4 */
+    overflow: hidden; /* Menyembunyikan judul saat di luar frame */
+    border-radius: 8px; /* Samakan dengan border-radius card jika ada */
+    background-color: #e0e0e0; /* Warna fallback jika gambar tidak termuat */
+}
+
+/* Gambar di dalam card */
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.35s ease-in-out; /* Transisi untuk efek blur */
+}
+
+/* Judul overlay di atas gambar */
+.card-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    color: white;
+    font-family: var(--font-quicksand);
+    font-weight: 700;
+    text-align: center;
+
+    /* Background gradien agar teks lebih terbaca */
+    background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+
+    /* Posisi awal: di bawah (tersembunyi) */
+    transform: translateY(100%);
+    transition: transform 0.35s ease-in-out;
+}
+
+/* EFEK SAAT CARD DI-HOVER */
+.card:hover .card-image {
+    filter: blur(2px); /* Menambahkan efek blur pada gambar */
+}
+
+.card:hover .card-title-overlay {
+    transform: translateY(0); /* Menggeser judul ke atas (posisi normal) */
+}
+
+/* Hapus .card-content jika tidak digunakan lagi */
+.card-content {
+    display: none;
+}
+
+/* 16. Article Section Styling */
+.article-grid {
+    display: grid;
+    /* Membuat 2 kolom dengan lebar yang sama */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 2rem; /* Jarak antar kartu */
+}
+
+.article-card {
+    display: block;
+    position: relative; /* Wajib untuk menampung overlay */
+    border-radius: 8px;
+    overflow: hidden; /* Wajib untuk menyembunyikan konten yang keluar */
+    text-decoration: none;
+    color: var(--color-dark);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.article-card-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Rasio gambar 16:9 */
+    object-fit: cover;
+    transition: filter 0.35s ease-in-out;
+}
+
+.article-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    background-color: white;
+
+    /* Posisi awal: hanya sebagian kecil yang terlihat */
+    transform: translateY(calc(100% - 90px));
+    transition: transform 0.35s ease-in-out;
+}
+
+.article-card-title {
+    font-family: var(--font-poppins);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.article-card-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+/* EFEK HOVER PADA KARTU */
+.article-card:hover .article-card-image {
+    filter: blur(3px); /* Memberi efek blur pada gambar */
+}
+
+.article-card:hover .article-card-content {
+    transform: translateY(0); /* Menggeser konten teks ke atas hingga terlihat penuh */
+}
+
+
+/* RESPONSIVE: membuat tumpukan 1 kolom di mobile */
+@media (max-width: 768px) {
+    .article-grid {
+        grid-template-columns: 1fr; /* 1 kolom di layar kecil */
+    }
+}
+
+/* 17. Footer Layout & Icons */
+.footer-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem; /* Jarak antara kolom kiri dan kanan */
+    margin-bottom: 2rem; /* Jarak sebelum copyright */
+}
+
+.footer-left {
+    flex: 1; /* Mengambil ruang yang tersedia */
+}
+
+.footer-right {
+    flex: 1.5; /* Memberi ruang sedikit lebih banyak untuk peta */
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 1rem; /* Jarak antar ikon */
+    margin-top: 1rem;
+}
+
+.footer-social-icons a {
+    display: inline-block;
+}
+
+.footer-social-icons svg {
+    width: 24px;
+    height: 24px;
+    fill: #a3a3a3; /* Warna ikon default */
+    transition: fill 0.3s ease;
+}
+
+.footer-social-icons svg:hover {
+    fill: #ffffff; /* Warna ikon saat di-hover */
+}
+
+/* Membuat Google Maps Responsif */
+.footer-right iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 200px; /* Tinggi minimal peta */
+    border-radius: 8px; /* Sudut sedikit membulat */
+}
+
+/* Responsif untuk layar kecil (Mobile) */
+@media (max-width: 768px) {
+    .footer-layout {
+        flex-direction: column; /* Mengubah layout menjadi tumpukan vertikal */
+        gap: 2.5rem;
+    }
+}
+
+/* ======================= 18. RESPONSIVE NAVBAR ======================= */
+
+/* Sembunyikan elemen mobile di desktop */
+.hamburger-menu,
+.nav-close-btn,
+.cart-icon {
+    display: none;
+}
+
+/* Tampilan Mobile (Breakpoint 768px) */
+@media (max-width: 768px) {
+    .navbar-container {
+        position: relative;
+        justify-content: center; /* Logo di tengah secara default */
+    }
+
+    /* Sembunyikan navigasi desktop & login text */
+    .navbar-nav {
+        display: none; /* Sembunyikan nav desktop */
+    }
+    .nav-link-login, .cart-text {
+        display: none; /* Sembunyikan tulisan LOG IN dan CART */
+    }
+
+    /* Tampilkan ikon hamburger dan keranjang */
+    .hamburger-menu, .cart-icon {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.25rem;
+        color: var(--color-primary);
+    }
+    
+    /* Posisikan ikon hamburger di kiri */
+    .hamburger-menu {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* Posisikan actions (termasuk ikon cart) di kanan */
+    .navbar-actions {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* Styling untuk Menu Mobile yang aktif (slide-in) */
+    .navbar-nav.active {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px; /* Lebar menu */
+        height: 100vh;
+        background-color: white;
+        padding: 4rem 2rem;
+        box-shadow: 4px 0px 15px rgba(0,0,0,0.1);
+
+        /* Animasi */
+        transform: translateX(0);
+        transition: transform 0.35s ease-in-out;
+    }
+
+    /* Posisi awal menu mobile (tersembunyi di kiri) */
+    .navbar-nav {
+        transform: translateX(-100%);
+    }
+
+    /* Tombol Close di dalam menu mobile */
+    .nav-close-btn {
+        display: block;
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+/* Styling untuk Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Background hitam transparan */
+    z-index: 99; /* Tepat di bawah menu mobile */
+    
+    /* Sembunyikan secara default */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Styling untuk tombol toggle baru */
+.hamburger-toggle {
+    display: none; /* Sembunyikan di desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    z-index: 101; /* Pastikan di atas overlay */
+    padding: 0;
+}
+
+/* Sembunyikan ikon X secara default */
+.hamburger-toggle .icon-close {
+    display: none;
+}
+
+/* Saat menu aktif, tampilkan ikon X dan sembunyikan ikon hamburger */
+.menu-open .hamburger-toggle .icon-hamburger {
+    display: none;
+}
+.menu-open .hamburger-toggle .icon-close {
+    display: block;
+}
+
+
+/* Tampilan Mobile (Breakpoint 768px) */
+@media (max-width: 768px) {
+    /* ... (CSS navbar-container, navbar-actions, dll. dari sebelumnya tetap sama) ... */
+
+    /* Tampilkan tombol toggle di mobile */
+    .hamburger-toggle {
+        display: block;
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* ... (CSS untuk .navbar-nav.active dari sebelumnya tetap sama) ... */
+    
+    /* ANIMASI DELAY UNTUK ITEM MENU */
+    /* Kondisi awal item menu (sebelum aktif) */
+    .navbar-nav .nav-link {
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+
+    /* Saat menu aktif, animasikan item */
+    .navbar-nav.active .nav-link {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Terapkan delay yang berbeda untuk setiap item */
+    .navbar-nav.active .nav-link:nth-child(1) { transition-delay: 0.15s; }
+    .navbar-nav.active .nav-link:nth-child(2) { transition-delay: 0.25s; }
+    .navbar-nav.active .nav-link:nth-child(3) { transition-delay: 0.35s; }
+}
